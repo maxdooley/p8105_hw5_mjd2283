@@ -7,6 +7,9 @@ output: github_document
 
 ```{r}
 
+library(tidyverse)
+set.seed(1)
+
 shared_bday = function(n_group) {
 
   sim_bday = sample(1:365, size = n_group, replace = TRUE)
@@ -25,19 +28,14 @@ Assuming no leap years and birthdays are distributed equally
 
 bday_results_df =
   expand_grid(
-    sample_size = 2:50,
+    group_size = 2:50,
     iter = 1:10000
   ) |>
+  mutate(shared = map(group_size, shared_bday)) |>
+  unnest(shared) |>
+  group_by(group_size) |>
+  summarize(prob_shared = mean(shared))
 
-
-sim_results_df = 
-  expand_grid(
-    sample_size = 30,
-    iter = 1:100
-  ) |> 
-  mutate(
-    estimate_df = map(sample_size, sim_mean_sd)
-  ) |> 
-  unnest(estimate_df)
+bday_results_df
 
 ```
