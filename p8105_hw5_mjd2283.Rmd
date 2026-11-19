@@ -17,8 +17,27 @@ shared_bday = function(n_group) {
 #For any(duplicated()) was unsure where to find in notes so used AI to help find this function. The use is straightforward, if any of the called upon birthdays from the sample() are duplicated.
 #Duplicated flags birthdays already included in sample. Any() returns true if a birthday is repeated, false if not. 
 
-
 ```
 
 Assuming no leap years and birthdays are distributed equally
 
+```{r}
+
+bday_results_df =
+  expand_grid(
+    sample_size = 2:50,
+    iter = 1:10000
+  ) |>
+
+
+sim_results_df = 
+  expand_grid(
+    sample_size = 30,
+    iter = 1:100
+  ) |> 
+  mutate(
+    estimate_df = map(sample_size, sim_mean_sd)
+  ) |> 
+  unnest(estimate_df)
+
+```
