@@ -1,0 +1,24 @@
+---
+title: "p8105_hw5_mjd2283"
+author: "Max"
+date: "2026-11-19"
+output: github_document
+---
+
+```{r}
+
+shared_bday = function(n_group) {
+
+  sim_bday = sample(1:365, size = n_group, replace = TRUE)
+  any(duplicated(sim_bday))
+
+}
+
+#For any(duplicated()) was unsure where to find in notes so used AI to help find this function. The use is straightforward, if any of the called upon birthdays from the sample() are duplicated.
+#Duplicated flags birthdays already included in sample. Any() returns true if a birthday is repeated, false if not. 
+
+
+```
+
+Assuming no leap years and birthdays are distributed equally
+
