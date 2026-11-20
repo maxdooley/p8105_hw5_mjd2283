@@ -104,6 +104,8 @@ tidy_df |>
   )
 
 ```
+Looking above, we see that the observations fluctuate a bit for the control group but stay mainly around -1.25 and 2.75 (with some outliers) and has no clear increase or decrease. In comparison, the experimental group started out with observations around this range but they got increasingly larger. 
+
 #problem 3
 ```{r}
 
@@ -162,6 +164,7 @@ power_df |>
     y = "Power"
   )
 ```
+As mu increases, the power rapidly increases and levels out around mu = 4.
 
 #average estimate of mu
 
