@@ -138,8 +138,29 @@ sim_results_df =
 
 #used expand_grid to make the new row values, used map() to perform sim_t_test on mu values, and then used unnest() to get estimate and p value
 
-
 ```
 
+#plots
+
+```{r}
+
+power_df =
+  sim_results_df |>
+  group_by(true_mu) |>
+  summarize(power = mean(p.value < 0.05)) |>
+  knitr::kable(digits = 3)
+
+#looking at the mean of true vs false (so will get proportion)
+
+power_df |>
+  ggplot(aes(x = true_mu, y = power)) +
+  geom_point() +
+  geom_path() +
+  labs(
+    title = "Power of t test",
+    x = "True value of mu",
+    y = "Power"
+  )
+```
 
 
