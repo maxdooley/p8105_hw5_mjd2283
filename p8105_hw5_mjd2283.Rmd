@@ -131,7 +131,7 @@ sim_t_test = function(mu, n = 30, sigma = 5) {
 sim_results_df =
   expand_grid(
     true_mu = 0:6,
-    iter = 1:100
+    iter = 1:5000
   ) |>
   mutate(estimate_df = map(true_mu, sim_t_test)) |>
   unnest(estimate_df)
@@ -181,6 +181,24 @@ avg_df |>
     y = "Average estimate of mu"
   )
 ```
+
+```{r}
+
+avg_est_rejected_df =
+  sim_results_df |>
+  filter(p.value < 0.05) |>
+  group_by(true_mu) |>
+  summarize(avg_mu_rej_est = mean(estimate))
+
+avg_est_rejected_df |>
+  ggplot(aes(x = true_mu, y = avg_mu_rej_est)) +
+  geom_point() +
+  geom_path() +
+  labs(
+    title = "Average estimate of mu in samples (where null is rejected)",
+    x = "True value of mu",
+    y = "Average estimate of mu"
+  )
 
 ```
 
