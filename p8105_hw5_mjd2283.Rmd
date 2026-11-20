@@ -202,3 +202,5 @@ avg_est_rejected_df |>
 
 ```
 
+Looking above, we see that the average estimate of mu in all samples is approximately equal to the true value of null. In comparison, when looking at the average estimate of mu for samples where the null is rejected, this value is not equal to the true value of mu (particularly earlier on where there is more bumps in the graph). After mu equals 4 and onwards, the relationship looks more diagonal showing its more equivalent to the true value of mu. 
+
