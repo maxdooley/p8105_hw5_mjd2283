@@ -6,7 +6,6 @@ output: github_document
 ---
 
 ```{r}
-
 library(tidyverse)
 set.seed(1)
 
@@ -19,7 +18,6 @@ shared_bday = function(n_group) {
 
 #For any(duplicated()) was unsure where to find in notes so used AI to help find this function. The use is straightforward, if any of the called upon birthdays from the sample() are duplicated.
 #Duplicated flags birthdays already included in sample. Any() returns true if a birthday is repeated, false if not. 
-
 ```
 
 Assuming no leap years and birthdays are distributed equally
@@ -37,7 +35,6 @@ bday_results_df =
   summarize(prob_shared = mean(shared))
 
 bday_results_df
-
 ```
 
 #plotting
@@ -48,12 +45,28 @@ bday_results_df |>
   geom_path() +
   labs(
     title = "Probability that at least two people share a birthday",
-    x = "Group size",
-    y = "Estimated probability"
+    x = "Group Size",
+    y = "Estimated Probability"
   )
 ```
 
+Looking above, we see that as group size increases estimated probability also increases. The relationship curves upwards, becomes practically linear, and then levels out as the group size approaches 50
+
+#problem 2
+
+```{r}
+study_df =
+  tibble(
+    files = list.files("data/hw5_data/"),
+    path = str_c("data/hw5_data/", files)
+  ) %>%
+  mutate(data = map(path, read_csv)) %>%
+  unnest(data)
+
 ```
+
+
+
 
 
 
