@@ -24,8 +24,8 @@ shared_bday = function(n_group) {
 
 Assuming no leap years and birthdays are distributed equally
 
+#creating df
 ```{r}
-
 bday_results_df =
   expand_grid(
     group_size = 2:50,
@@ -39,3 +39,22 @@ bday_results_df =
 bday_results_df
 
 ```
+
+#plotting
+```{r}
+bday_results_df |>
+  ggplot(aes(x = group_size, y = prob_shared)) +
+  geom_point() +
+  geom_path() +
+  labs(
+    title = "Probability that at least two people share a birthday",
+    x = "Group size",
+    y = "Estimated probability"
+  )
+```
+
+```
+
+
+
+
