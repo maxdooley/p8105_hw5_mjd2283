@@ -103,12 +103,6 @@ tidy_df |>
     y = "Observation"
   )
 
-tidy_df %>% 
-  ggplot(aes(x = week, y = outcome, group = subj, color = group)) + 
-  geom_point() + 
-  geom_path() + 
-  facet_grid(~group)
-
 ```
 
 
