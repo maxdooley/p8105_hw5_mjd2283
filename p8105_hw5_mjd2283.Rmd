@@ -90,7 +90,26 @@ tidy_df
 #replaced the name using mutate and then used case match to make con -> control and exp -> experimental
 ```
 
+```{r}
 
+tidy_df |>
+  ggplot(aes(x = week, y = observation, group = subject, color = arm)) +
+  geom_point() +
+  geom_path() +
+  facet_grid(~arm) +
+  labs(
+    title = "Observations over time for each subject, comparing arms",
+    x = "Week",
+    y = "Observation"
+  )
+
+tidy_df %>% 
+  ggplot(aes(x = week, y = outcome, group = subj, color = group)) + 
+  geom_point() + 
+  geom_path() + 
+  facet_grid(~group)
+
+```
 
 
 
