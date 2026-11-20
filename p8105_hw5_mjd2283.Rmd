@@ -36,4 +36,6 @@ bday_results_df =
   group_by(group_size) |>
   summarize(prob_shared = mean(shared))
 
+bday_results_df
+
 ```
