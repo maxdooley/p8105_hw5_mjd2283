@@ -107,6 +107,36 @@ tidy_df |>
 #problem 3
 ```{r}
 
+sim_t_test = function(mu, n = 30, sigma = 5) {
+
+  sim_data = tibble(
+    x = rnorm(n, mean = mu, sd = sigma)
+  )
+  
+  sim_data |>
+    pull(x) |>
+    t.test(mu = 0) |>
+    broom::tidy() |>
+    select(estimate, p.value)
+}
+
+#created input data, and then made x to do t.test on
+#used AI assistance to know how to perform t.test(mu=0), mu=0 is the null in this case
+#Also used AI to select the values estimate and p value
+
+```
+
+```{r}
+
+sim_results_df =
+  expand_grid(
+    true_mu = 0:6,
+    iter = 1:5000
+  ) |>
+  mutate(estimate_df = map(true_mu, sim_t_test)) |>
+  unnest(estimate_df)
+
+#used expand_grid to make the new row values, used map() to perform sim_t_test on mu values, and then used unnest() to get estimate and p value
 
 
 ```
